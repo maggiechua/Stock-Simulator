@@ -34,7 +34,6 @@ cd stock-simulator
     - Open project in IntelliJ IDEA, Eclipse, or VS Code with Java Extension Pack
     - Navigate to `StockProgram.java` and run the main method
   - **Command Line (Alternative)**
-    - 
   
 _Note: This project uses a text-based interface as the GUI implementation is incomplete._
 
