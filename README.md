@@ -30,12 +30,11 @@ cd stock-simulator
 2. Configure path to access stock data according to your OS:
 - Please enter either "mac" or "windows" in the return for getOSType method on line 39 of `FileParser.java`
 3. Run the program:
-  **Using IDE (Recommended):**
-  - Open project in IntelliJ IDEA, Eclipse, or VS Code with Java Extension Pack
-  - Navigate to `StockProgram.java` and run the main method
-
-  **Command Line (Alternative)**
-  - 
+  - **Using IDE (Recommended):**
+    - Open project in IntelliJ IDEA, Eclipse, or VS Code with Java Extension Pack
+    - Navigate to `StockProgram.java` and run the main method
+  - **Command Line (Alternative)**
+    - 
   
 _Note: This project uses a text-based interface as the GUI implementation is incomplete._
 
