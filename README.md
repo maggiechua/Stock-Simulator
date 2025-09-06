@@ -30,7 +30,6 @@ Java-based stock simulation program integrated with real-time market data, enabl
 1. Clone the repository:
 ```
 git clone https://github.com/maggiechua/Stock-Simulator.git
-cd Stocks
 ```
 2. Configure path to access stock data according to your OS:
   - Open `FileParser.java` (line 39)
