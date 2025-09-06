@@ -42,8 +42,8 @@ _Note: This project uses a text-based interface as the GUI implementation is inc
 
 ## How to Test
 All the tests are located within the `tests` folder:
-**Model Tests:** All tests pass - covers core business logic
-**View/Controller Tests:** Partial coverage due to interface dependencies
+- **Model Tests:** All tests pass - covers core business logic
+- **View/Controller Tests:** Partial coverage due to interface dependencies
 
 **To run:**
 - Right-click on any test file and click on "Run Test"
