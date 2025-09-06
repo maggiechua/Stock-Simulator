@@ -1,8 +1,5 @@
 package stocks.view;
-import java.awt.Color;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.rmi.activation.ActivationInstantiator;
@@ -24,24 +21,48 @@ import stocks.model.ReadOnlyModel;
  */
 public class StocksGUIView extends JFrame implements StocksView {
   private JPanel mainPanel;
-  private JPanel searchPanel, stocksPanel, portfoliosPanel, stockActionsPanel, portfolioActionsPanel,
-          searchStockPanel, searchPortfolioPanel, searchSPanel;
-  private JPanel valPanel, yearPanel, monthPanel, dayPanel;
-  private JLabel instructionsLabel, searchLabel;
-  private JTextField enterStock, enterValue, enterShares;
-  private JButton helpButton, loadButton, searchSButton, createPortfolioButton, searchPButton;
-  private JLabel enterStockLabel, enterValLabel, enterYearLabel, enterMonthLabel, enterDayLabel,
-          enterSharesLabel;
-  private JComboBox<String> selectionComboBox, yearsCombobox, monthsCombobox, daysCombobox;
-  private JRadioButton[] radioButtons, portfolioRadioButtons;
-  private ButtonGroup radioButtonGroup, portfolioRadioButtonGroup;
-  private boolean stock;
+  private JPanel searchPanel;
+  private JPanel stocksPanel;
+  private JPanel portfoliosPanel;
+  private JPanel stockActionsPanel;
+  private JPanel searchStockPanel;
+  private JPanel searchPortfolioPanel;
+  private JPanel yearPanel;
+  private JPanel monthPanel;
+  private JPanel dayPanel;
+  private JLabel instructionsLabel;
+  private JLabel searchLabel;
+  private JTextField enterStock;
+  private JTextField enterShares;
+  private JTextField input;
+  private JButton helpButton;
+  private JButton loadButton;
+  private JButton createButton;
+  private JButton createPortfolioButton;
+  private JButton searchPButton;
+  private JLabel enterStockLabel;
+  private JLabel enterYearLabel;
+  private JLabel enterMonthLabel;
+  private JLabel enterDayLabel;
+  private JLabel enterSharesLabel;
+  private JComboBox<String> selectionComboBox;
+  private JComboBox<String> yearsCombobox;
+  private JComboBox<String> monthsCombobox;
+  private JComboBox<String> daysCombobox;
+  private JRadioButton[] radioButtons;
+  private ButtonGroup radioButtonGroup;
   private ReadOnlyModel rm;
   private String resultString;
+  private JFrame namePortfolioWindow;
 
+  /**
+   * The following is a constructor for a StocksGUIView which creates a window with the GUI.
+   * @param rm represent a view-only model so the view can access values in the model
+   */
   public StocksGUIView(ReadOnlyModel rm) {
     super();
     this.rm = rm;
+    this.resultString = "";
     this.setBackground(Color.WHITE);
     this.setTitle("Welcome to Stocks Program!");
     this.setSize(800, 600);
@@ -86,12 +107,12 @@ public class StocksGUIView extends JFrame implements StocksView {
   }
 
   private void makeResultWindow(String action, String result) {
-    JFrame resultWindow = new JFrame("Results for " + action + " method!" + result);
+    JFrame resultWindow = new JFrame();
     resultWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     JPanel resultPanel = new JPanel(new BorderLayout());
     resultPanel.setPreferredSize(new Dimension(250, 200));
     resultWindow.add(resultPanel);
-    JLabel helpLabel = new JLabel("<html>Results for " + action + " method!" + result
+    JLabel helpLabel = new JLabel("<html>Results for " + action + " method! " + result
     + "</html>");
     resultPanel.add(helpLabel);
     resultWindow.pack();;
@@ -114,20 +135,30 @@ public class StocksGUIView extends JFrame implements StocksView {
 
   @Override
   public void namePortfolioWindow() {
-    JFrame createPWindow = new JFrame("Create Portfolio");
-    createPWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    JPanel namePanel = new JPanel(new BorderLayout());
-    namePanel .setPreferredSize(new Dimension(250, 200));
-    createPWindow.add(namePanel );
-    JLabel enterName = new JLabel("Enter name: ");
-    JTextField input = new JTextField(15);
-    JButton createButton = new JButton("create");
-    namePanel.add(enterName);
-    namePanel.add(input);
-    namePanel.add(createButton);
-    createPWindow.add(namePanel);
-    createPWindow.pack();;
-    createPWindow.setVisible(true);
+    namePortfolioWindow = new JFrame("Create Portfolio");
+    namePortfolioWindow.setBackground(Color.WHITE);
+    namePortfolioWindow.setSize(250, 200);
+    namePortfolioWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    namePortfolioWindow.setLayout(new BorderLayout());
+    namePortfolioWindow.setResizable(false);
+    JPanel portfolioPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 40));
+    portfolioPanel.setPreferredSize(new Dimension(250, 200));
+    namePortfolioWindow.add(portfolioPanel);
+    JLabel name = new JLabel("Enter Portfolio Name: ");
+    name.setSize(100, 50);
+    input = new JTextField(5);
+    input.setSize(50,20);
+    createButton = new JButton("create");
+    createButton.setSize(10, 5);
+    portfolioPanel.add(name);
+    portfolioPanel.add(input);
+    portfolioPanel.add(createButton);
+    namePortfolioWindow.pack();
+    namePortfolioWindow.setVisible(true);
+  }
+
+  public void closeCreatePortfolio() {
+    namePortfolioWindow.setVisible(false);
   }
 
   @Override
@@ -162,30 +193,45 @@ public class StocksGUIView extends JFrame implements StocksView {
   }
 
   // GETTERS
+  @Override
   public String getYear() {
     return (String) yearsCombobox.getSelectedItem();
   }
 
+  @Override
   public String getMonth() {
     return (String) monthsCombobox.getSelectedItem();
   }
 
+  @Override
   public String getDay() {
     return (String) daysCombobox.getSelectedItem();
   }
 
+  @Override
   public String getStock() {
     return enterStock.getText();
   }
 
+  @Override
   public String getValue() {
     return enterShares.getText();
   }
 
+  @Override
   public String getPortfolio() {
     return (String) selectionComboBox.getSelectedItem();
   }
 
+  @Override
+  public String makePortfolio() {
+    return input.getText();
+  }
+
+  /**
+   * The following method returns the stock action performed
+   * @return a string representing the stock action
+   */
   public String getStockAction() {
     for (JRadioButton b : radioButtons) {
       String a = b.getActionCommand();
@@ -197,6 +243,7 @@ public class StocksGUIView extends JFrame implements StocksView {
   }
 
   // SETTERS
+  @Override
   public void setFieldBlank(String place) {
     if (place.equals("stock")) {
       enterStock.setText("");
@@ -207,53 +254,68 @@ public class StocksGUIView extends JFrame implements StocksView {
   }
 
   // SETTING UP LISTENERS
+  @Override
   public void setHelpListener(ActionListener listen) {
     helpButton.addActionListener(listen);
   }
 
+  @Override
   public void setLoadListener(ActionListener listen) {
     loadButton.addActionListener(listen);
   }
 
+  @Override
   public void setCreatePortfolioListener(ActionListener listen) {
     createPortfolioButton.addActionListener(listen);
   }
 
-  public void setPortfolioSelectionListener(ActionListener listen) {
-    selectionComboBox.addActionListener(listen);
-  }
-
+  @Override
   public void setStockActionListener(ActionListener listen) {
     for (JRadioButton radioButton : radioButtons) {
       radioButton.addActionListener(listen);
     }
   }
 
+  @Override
   public void setStockSearchListener(ActionListener listen) {
     enterStock.addActionListener(listen);
   }
 
+  @Override
   public void setEnterValueListener(ActionListener listen) {
     enterShares.addActionListener(listen);
   }
 
+  @Override
   public void setYearsListener(ActionListener listen) {
     yearsCombobox.addActionListener(listen);
   }
 
+  @Override
   public void setMonthsListener(ActionListener listen) {
     monthsCombobox.addActionListener(listen);
   }
 
+  @Override
   public void setDaysListener(ActionListener listen) {
     daysCombobox.addActionListener(listen);
   }
 
+  @Override
   public void setSearchListener(ActionListener listen) {
     searchPButton.addActionListener(listen);
   }
 
+  @Override
+  public void setCreateListener(ActionListener listen) {
+    createButton.addActionListener(listen);
+  }
+
   // PANEL HELPERS
+  /**
+   * The following method creates the search panel for the GUI
+   * @return a search panel
+   */
   public JPanel createSearchPanel() {
     searchPanel = new JPanel();
     searchPanel.setPreferredSize(new Dimension(800, 100));
@@ -495,7 +557,9 @@ public class StocksGUIView extends JFrame implements StocksView {
 
   @Override
   public void portfolioCreationMessage(String name) {
-
+    JOptionPane.showMessageDialog(StocksGUIView.this,
+            "Portfolio " + name + " created!", "Portfolio Created!",
+            JOptionPane.PLAIN_MESSAGE);
   }
 
   @Override

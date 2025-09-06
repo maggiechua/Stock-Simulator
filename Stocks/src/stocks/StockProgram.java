@@ -37,33 +37,23 @@ public class StockProgram {
     ReadOnlyModel rm = new ViewModel(model);
     Readable rd = new InputStreamReader(System.in);
 
-    StocksGUIView.setDefaultLookAndFeelDecorated(false);
-    StocksGUIView gui = new StocksGUIView(rm);
+    /**
+     * This is commented out code for running the GUI view version. Incomplete.
+     */
+    /*
+     * StocksGUIView.setDefaultLookAndFeelDecorated(false);
+     * StocksGUIView gui = new StocksGUIView(rm);
+     *
+     * gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     * gui.setVisible(true);
+     * view = gui;
+     * controller = new StocksGUIController(model, rd, view);
+     */
 
-    gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    gui.setVisible(true);
-    view = gui;
-    controller = new StocksGUIController(model, rd, view);
+    // create the controller and view for text-based interface
+    view = new StocksViewImpl(System.out);
+    controller = new StocksControllerImpl(model, rd, view);
 
-
-    if (args.length == 0) {
-      StocksGUIView.setDefaultLookAndFeelDecorated(false);
-      gui = new StocksGUIView(model);
-
-      gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      gui.setVisible(true);
-      view = gui;
-      controller = new StocksGUIController(model, rd, view);
-    }
-    else if (args[0].equals("-text")) {
-      view = new StocksViewImpl(System.out);
-      controller = new StocksControllerImpl(model, rd, view);
-    }
-    else {
-      System.out.println("Inputted text is not an option for stock program. Please input no command" 
-              + "line arguments for a graphical user interface, or enter '-text' for a text based"
-              + " interface.");
-    }
     controller.execute();
   }
 }
