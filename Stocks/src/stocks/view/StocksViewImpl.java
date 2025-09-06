@@ -2,17 +2,9 @@ package stocks.view;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.*;
-
-import stocks.controller.StocksController;
-
-import stocks.controller.StocksControllerImpl;
-import stocks.model.Portfolio;
 
 //TODO: PERFORMANCE OVER TIME
 // barchart must show the following:

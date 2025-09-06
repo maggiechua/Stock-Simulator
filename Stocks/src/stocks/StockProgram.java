@@ -4,15 +4,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
-import javax.swing.text.View;
-
 import stocks.controller.StocksController;
 import stocks.controller.StocksControllerImpl;
-import stocks.controller.StocksGUIController;
-import stocks.model.ReadOnlyModel;
-import stocks.model.ViewModel;
-import stocks.view.StocksGUIView;
 import stocks.view.StocksView;
 import stocks.view.StocksViewImpl;
 import stocks.model.Portfolio;
@@ -28,19 +21,19 @@ public class StockProgram {
    * This is the main method to run the program.
    */
   public static void main(String[] args) {
-    StocksView view = null;
+    StocksView view;
     StocksController controller;
     String init = "";
     List<Portfolio> p = new ArrayList<>();
     StocksModel model = new StocksModelImpl(init, p);
     model = model.loadPortfolios();
-    ReadOnlyModel rm = new ViewModel(model);
     Readable rd = new InputStreamReader(System.in);
 
-    /**
-     * This is commented out code for running the GUI view version. Incomplete.
-     */
+    // This is commented out code for running the GUI view version. Incomplete. Requires
+    // imports to properly run.
     /*
+     * ReadOnlyModel rm = new ViewModel(model);
+     *
      * StocksGUIView.setDefaultLookAndFeelDecorated(false);
      * StocksGUIView gui = new StocksGUIView(rm);
      *

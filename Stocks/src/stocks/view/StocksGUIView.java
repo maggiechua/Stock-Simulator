@@ -2,7 +2,6 @@ package stocks.view;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.rmi.activation.ActivationInstantiator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -115,7 +114,7 @@ public class StocksGUIView extends JFrame implements StocksView {
     JLabel helpLabel = new JLabel("<html>Results for " + action + " method! " + result
     + "</html>");
     resultPanel.add(helpLabel);
-    resultWindow.pack();;
+    resultWindow.pack();
     resultWindow.setVisible(true);
   }
 
@@ -188,7 +187,7 @@ public class StocksGUIView extends JFrame implements StocksView {
     helpPanel.setLayout(new BoxLayout(helpPanel, BoxLayout.PAGE_AXIS));
     helpPanel.setPreferredSize(new Dimension(250, 200));
     helpWindow.add(helpPanel);
-    helpWindow.pack();;
+    helpWindow.pack();
     helpWindow.setVisible(true);
   }
 
@@ -450,7 +449,7 @@ public class StocksGUIView extends JFrame implements StocksView {
 
     enterYearLabel = new JLabel("Enter year:");
     yearPanel.add(enterYearLabel);
-    List<String> years = new ArrayList<String>();
+    List<String> years = new ArrayList<>();
     for (int y = 2000; y < 2025; y++) {
       years.add((String.valueOf(y)));
     }
@@ -463,7 +462,7 @@ public class StocksGUIView extends JFrame implements StocksView {
 
     enterMonthLabel = new JLabel("Enter month:");
     monthPanel.add(enterMonthLabel);
-    List<String> months = new ArrayList<String>();
+    List<String> months = new ArrayList<>();
     for (int y = 1; y < 13; y++) {
       months.add((String.valueOf(y)));
     }
@@ -476,7 +475,7 @@ public class StocksGUIView extends JFrame implements StocksView {
 
     enterDayLabel = new JLabel("Enter day:");
     dayPanel.add(enterDayLabel);
-    List<String> days = new ArrayList<String>();
+    List<String> days = new ArrayList<>();
     for (int y = 1; y < 32; y++) {
       days.add((String.valueOf(y)));
     }
@@ -494,7 +493,7 @@ public class StocksGUIView extends JFrame implements StocksView {
    * @return a combobox of strings
    */
   public JComboBox<String> createComboBox(String[] options) {
-    JComboBox<String> comboBox = new JComboBox<String>();
+    JComboBox<String> comboBox = new JComboBox<>();
     for (int i = 0; i < options.length; i++) {
       comboBox.addItem(options[i]);
     }
