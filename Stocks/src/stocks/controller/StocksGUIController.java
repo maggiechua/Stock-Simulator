@@ -38,6 +38,9 @@ public class StocksGUIController implements StocksController {
     this.setUpListeners();
   }
 
+  /**
+   * The following method sets up all the listeners for JComponent items located in the view.
+   */
   private void setUpListeners() {
     view.setHelpListener(e -> view.createHelpWindow());
     view.setStockActionListener(e -> setStockAction(e.getActionCommand()));
@@ -51,6 +54,10 @@ public class StocksGUIController implements StocksController {
     view.setSearchListener(e -> search());
   }
 
+  /**
+   * The following method determines what elements the user has interacted with and calls
+   * the methods in the model and view to process them accordingly.
+   */
   private void search() {
     String stockName = view.getStock();
     String portfolioName = view.getPortfolio();
@@ -83,6 +90,10 @@ public class StocksGUIController implements StocksController {
     }
   }
 
+  /**
+   * The following method retrieves the date from the view and returns it in the desired format.
+   * @return the date as a String
+   */
   private String date() {
     String year = view.getYear();
     String month = view.getMonth();
@@ -90,29 +101,62 @@ public class StocksGUIController implements StocksController {
     return year + "-" + month + "-" + day;
   }
 
+  /**
+   * The following method displays a help window when the user clicks on the button.
+   */
   private void showHelp() {
     view.createHelpWindow();
-    System.out.println("PLEASE PLEAS PLEA");
   }
 
+  /**
+   * The following method sets the stock action to the current command based on the information
+   * extracted from the action listener.
+   * @param command represents a command called by the user represented as a String
+   */
   private void setStockAction(String command) {
     this.stockAction = command;
   }
 
+  /**
+   * The following calls the view to display a window allowing the user to type in the desired
+   * name for their portfolio.
+   */
   private void setCreatePortfolio() {
     view.namePortfolioWindow();
-    model.createPortfolio("");
+    view.setCreateListener(e -> createPortfolio());
   }
 
+  /**
+   * The following method creates a new portfolio for the user in the StocksProgram.
+   */
+  private void createPortfolio() {
+    model.createPortfolio(view.makePortfolio());
+    view.closeCreatePortfolio();
+    view.portfolioCreationMessage(view.makePortfolio());
+    model = model.loadPortfolios();
+  }
+
+  /**
+   * The following method loads a file that the user has entered.
+   */
   private void setLoad() {
     Path filePath = Path.of(view.loadFileWindow());
     System.out.println("PLEASE PLEAS PLEA");
   }
 
+  /**
+   * The following method retrieves the stock that a user has entered.
+   * @return the inputted stock as a String
+   */
   private String searchStock() {
     return view.getStock();
   }
 
+  /**
+   * The following method converts the number of shares entered by the user into
+   * a double.
+   * @return the number of shares as a double
+   */
   private double valueEntered() {
     Double value = 0.0;
     try {

@@ -2,17 +2,9 @@ package stocks.view;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.*;
-
-import stocks.controller.StocksController;
-
-import stocks.controller.StocksControllerImpl;
-import stocks.model.Portfolio;
 
 //TODO: PERFORMANCE OVER TIME
 // barchart must show the following:
@@ -87,6 +79,7 @@ public class StocksViewImpl implements StocksView {
             + "the performance of a portfolio int the given range) \n");
     writeMessage("menu (Print supported instruction list) \n");
     writeMessage("q or quit (quit the program) \n");
+    writeMessage("[Please enter all dates in: YYYY-MM-DD format.] \n");
   }
 
   /**
@@ -188,7 +181,7 @@ public class StocksViewImpl implements StocksView {
   @Override
   public void invalidDate(String type) {
     if (type.equals("day") || type.equals("month") || type.equals("year")) {
-      writeMessage("Invalid " + type + ", please enter a new " + type + " value: ");
+      writeMessage("Invalid " + type + ". ");
     }
     else {
       writeMessage("Inputted date is not a market day, using closest market date: " + type + " \n");
@@ -261,6 +254,11 @@ public class StocksViewImpl implements StocksView {
   }
 
   @Override
+  public void setCreateListener(ActionListener listen) {
+
+  }
+
+  @Override
   public String getYear() {
     return "";
   }
@@ -291,6 +289,11 @@ public class StocksViewImpl implements StocksView {
   }
 
   @Override
+  public String makePortfolio() {
+    return "";
+  }
+
+  @Override
   public void setFieldBlank(String place) {
   }
 
@@ -306,6 +309,11 @@ public class StocksViewImpl implements StocksView {
 
   @Override
   public void namePortfolioWindow() {
+
+  }
+
+  @Override
+  public void closeCreatePortfolio() {
 
   }
 }

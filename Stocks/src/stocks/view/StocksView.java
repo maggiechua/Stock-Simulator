@@ -1,15 +1,9 @@
 package stocks.view;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.*;
-
-import stocks.controller.StocksController;
-import stocks.model.Portfolio;
 
 /**
  * This interface represents the View for a text-based interface of the Stocks Program where
@@ -19,56 +13,56 @@ public interface StocksView {
   /**
    * the welcomeMessage method adds the welcome message to the appendable in the class.
    */
-  public void welcomeMessage();
+  void welcomeMessage();
 
   /**
    * the typeInstruct method adds a user instruction frame message to the appendable in the class.
    */
-  public void typeInstruct();
+  void typeInstruct();
 
   /**
    * the undefined method returns an undefined instruction message to the appendable in the class.
    */
-  public void undefined();
+  void undefined();
 
   /**
    * the farewellMessage method adds a farewell message to the appendable in the class.
    */
-  public void farewellMessage();
+  void farewellMessage();
 
   /**
    * the printMenu method adds the initial menu text to the appendable in the class.
    */
-  public void printMenu();
+  void printMenu();
 
   /**
    * the printStockMenu method adds the stock menu text to the appendable in the class.
    */
-  public void printStockMenu();
+  void printStockMenu();
 
   /**
    * the returnResult method adds inputted text to the appendable in the class.
    * @param input the result to append
    */
-  public void returnResult(String input);
+  void returnResult(String input);
 
   /**
    * the portfolioException method adds minor portfolio error text to the appendable in the class.
    * @param buy a boolean for if the shares are being bought or sold (true is bought)
    */
-  public void portfolioException(boolean buy);
+  void portfolioException(boolean buy);
 
   /**
    * the formattedResult method adds formatted inputted text to the appendable in the class.
    * @param inp the Double result to format and append
    */
-  public void formattedReturn(Double inp);
+  void formattedReturn(Double inp);
 
   /**
    * the portfolioCreationMessage method adds creation text to the appendable in the class.
    * @param name the name of the portfolio
    */
-  public void portfolioCreationMessage(String name);
+  void portfolioCreationMessage(String name);
 
   /**
    * the buySellMessage method adds buying or selling shares text to the appendable in the class.
@@ -77,25 +71,25 @@ public interface StocksView {
    * @param name the name of the portfolio
    * @param sell a boolean for if the shares are being bought or sold (true is sold)
    */
-  public void buySellMessage(Integer quantity, String stock, String name, boolean sell);
+  void buySellMessage(Integer quantity, String stock, String name, boolean sell);
 
   /**
    * the askBalance method asks for the specific weight for a stock.
    * @param stock the stock symbol
    */
-  public void askBalance(String stock);
+  void askBalance(String stock);
 
   /**
    * the balanceInstruction method returns the instructions for inputting weights.
    */
-  public void balanceInstruction();
+  void balanceInstruction();
 
   /**
    * the listWrite method adds the list text to the appendable in the class.
    * @param input the map of stocks with their respective share counts
    * @param type the type of list: either distribution or composition
    */
-  public void listWrite(Map<String, Double> input, String type);
+  void listWrite(Map<String, Double> input, String type);
 
   /**
    * the barWrite method adds the bar graph to the appendable in the class.
@@ -106,71 +100,155 @@ public interface StocksView {
    * @param scale the scale for the asterisks
    * @param order the chronological order of the dates
    */
-  public void barWrite(String name, String date1, String date2, HashMap<String, Double> input,
+  void barWrite(String name, String date1, String date2, HashMap<String, Double> input,
                        Integer scale, List<String> order);
 
   /**
    * the invalidDate method adds an error message for an invalid date to the appendable.
    * @param type the part of the date (ie. year, month, day) which is incorrect
    */
-  public void invalidDate(String type);
-  
+  void invalidDate(String type);
+
   /**
    * the askDate method adds a message to ask for the date to the appendable.
    * @param type the part of the date (ie. year, month, day)
    */
-  public void askDate(String type);
+  void askDate(String type);
 
   /**
    * the askDate method adds a message to ask for the portfolio to the appendable.
    */
-  public void whichPortfolio();
+  void whichPortfolio();
 
   /**
    * the rebalanced method adds a message returning re-balancing weights to the appendable.
    * @param portfolioName the name of the portfolio being rebalanced
    */
-  public void rebalanced(String portfolioName);
+  void rebalanced(String portfolioName);
 
+  /**
+   * the setHelpListener method adds a new listener for the help button.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setHelpListener(ActionListener listen);
 
-  public void setHelpListener(ActionListener listen);
+  /**
+   * the setStockActionListener method adds a new listener for the stock actions radio buttons.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setStockActionListener(ActionListener listen);
 
-  public void setStockActionListener(ActionListener listen);
+  /**
+   * the setCreatePortfolio method adds a new listener for the create portfolio button.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setCreatePortfolioListener(ActionListener listen);
 
-  public void setCreatePortfolioListener(ActionListener listen);
+  /**
+   * the setLoadListener method adds a new listener for the load button.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setLoadListener(ActionListener listen);
 
-  public void setLoadListener(ActionListener listen);
+  /**
+   * the setStockSearchListener method adds a new listener for the searching stock text field.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setStockSearchListener(ActionListener listen);
 
-  public void setStockSearchListener(ActionListener listen);
+  /**
+   * the enterValueListener method adds a new listener for the value text field.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setEnterValueListener(ActionListener listen);
 
-  public void setEnterValueListener(ActionListener listen);
+  /**
+   * the setYearsListener method adds a new listener for the years scroll.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setYearsListener(ActionListener listen);
 
-  public void setYearsListener(ActionListener listen);
+  /**
+   * the setMonthsListener method adds a new listener for the months scroll.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setMonthsListener(ActionListener listen);
 
-  public void setMonthsListener(ActionListener listen);
+  /**
+   * the setDaysListener method adds a new listener for the days scroll.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setDaysListener(ActionListener listen);
 
-  public void setDaysListener(ActionListener listen);
+  /**
+   * the setSearchListener method adds a new listener for the search button.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setSearchListener(ActionListener listen);
 
-  public void setSearchListener(ActionListener listen);
+  /**
+   * the setCreateListener method adds a new listener for the create portfolio button.
+   * @param listen the ActionListener to set up in controller
+   */
+  void setCreateListener(ActionListener listen);
 
-  public String getYear();
+  /**
+   * the getYear method gets the text for year.
+   */
+  String getYear();
 
-  public String getMonth();
+  /**
+   * the getMonth method gets the text for month.
+   */
+  String getMonth();
 
-  public String getDay();
+  /**
+   * the getDay method gets the text for day.
+   */
+  String getDay();
 
-  public String getStock();
+  /**
+   * the getStock method gets the text for stock input.
+   */
+  String getStock();
 
-  public String getValue();
+  /**
+   * the getPortfolio method gets the text from selection from scrolling list.
+   */
+  String getPortfolio();
 
-  public String getPortfolio();
+  /**
+   * the makePortfolio method gets the text for stock input.
+   */
+  String makePortfolio();
 
-  public void setFieldBlank(String place);
+  /**
+   * the getValue method gets the text for value input.
+   */
+  String getValue();
 
-  public void createHelpWindow();
+  /**
+   * the setFieldBlank method gets the text to blank.
+   */
+  void setFieldBlank(String place);
 
-  public String loadFileWindow();
+  /**
+   * the createHelpWindow method creates a new help window.
+   */
+  void createHelpWindow();
 
-  public void namePortfolioWindow();
+  /**
+   * the loadFileWindow method creates a new window to load a file.
+   */
+  String loadFileWindow();
 
+  /**
+   * the namePortfolioWindow method creates a new window to create a portfolio.
+   */
+  void namePortfolioWindow();
+
+  /**
+   * the closeCreatePortfolio closes the namePortfolioWindow.
+   */
+  void closeCreatePortfolio();
 }
